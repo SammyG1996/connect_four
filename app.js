@@ -54,11 +54,11 @@ const perpChips = () => {
 const whoWins = (yellow, red) => {
   if(yellow === 4){
     endGameH2.innerHTML = 'Yellow Wins!'
-    endGame.classList.toggle('endGame')
+    endGame.classList.add('endGame')
     disableClick()
   } else if(red === 4){
     endGameH2.innerHTML = 'Red Wins!'
-    endGame.classList.toggle('endGame')
+    endGame.classList.add('endGame')
     disableClick()
   }
 }
@@ -173,12 +173,10 @@ const verticle = () => {
     let lastChip;
     for(let chip of chips[i]){
       if(chip.className === 'chip-container yellow') {
-        lastChip !== 'yellow' ? yellow = 1 : yellow = yellow + 1;
-        lastChip = 'yellow'
+        lastChip !== 'yellow' ? (yellow = 1) && (lastChip = 'yellow') : yellow = yellow + 1;
         whoWins(yellow, red)
       } else if(chip.className === 'chip-container red') {
-        lastChip !== 'red' ? red = 1 : red = red + 1;
-        lastChip = 'red'
+        lastChip !== 'red' ? (red = 1) && (lastChip = 'red') : red = red + 1;
         whoWins(yellow, red)
       }
     }
