@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  body #game-board {
+    width: 90vw;
+    height: 90vw;
+    padding: 1vw;    
+  }
+  
+  body .rows {
+    width: 12vw;
+  }
+  
+  body .chip-container {
+    height: 9vw;
+    width: 9vw;
+  }
+  body #start-game {
+    width: 25vw;
+    height: 20vh;
+    text-align: center;
+    font-size: 2vw;
+  }
+  
+  body #end-game{
+    width: 25vw;
+    height: 20vh;
+    text-align: center;
+    font-size: 2.5vw;
+  }
+
+  body button {
+   
+    font-size: 3vw;
+    text-align: center;
+    width: 20vw;
+    height: 5vh;
+    transition: .05s;
+    transform: scale(1);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0%;
+  margin: 0%;
+  overflow: hidden;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(34,113,233);
+  background: linear-gradient(0deg, rgba(34,113,233,1) 32%, rgba(25,249,233,1) 100%);
+}
+
+#start-game {
+  position: absolute;
+  top: 35vh;
+  left: 38vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25vw;
+  height: 25vh;
+  background-color: rgba(245, 245, 245, 0.863);
+  font-family: 'Bungee Shade', cursive;
+  border-radius: 1vw;
+  box-shadow: 3px 3px 5px #333;
+  font-size: 1vw;
+}
+
+#end-game{
+  position: absolute;
+  top: 35vh;
+  left: -50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25vw;
+  height: 25vh;
+  background-color: rgba(245, 245, 245, 0.863);
+  font-family: 'Bungee Shade', cursive;
+  border-radius: 1vw;
+  box-shadow: 3px 3px 5px #333;
+  font-size: 1vw;
+}
+
+/* Add this class when the button is click to make the game playable */
+/* Side NOTE: Make sure you can't click anything if the start button hasnt been clicked */
+.startGame {
+  animation-name: startgame;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes startgame{
+  from{
+    position: absolute;
+    left: 38vw;
+  }
+  to{
+    position: absolute;
+    left: 100vw;
+  }
+}
+
+.endGame {
+  animation-name: endgame;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes endgame{
+  from{
+    position: absolute;
+    left: -50vw;
+  }
+  to{
+    position: absolute;
+    left: 38vw;
+  }
+}
+
+button {
+  background-color: blue;
+  color: whitesmoke;
+  border-radius: 1vw;
+  border: 0px;
+  box-shadow: 3px 3px 5px #333;
+  font-size: 1vw;
+  width: 10vw;
+  height: 5vh;
+  transition: .05s;
+  transform: scale(1);
+}
+
+button:hover{
+  transform: scale(1.1);
+  transition: .05s;
+}
+
+button:active{
+  transform: scale(1);
+  transition: .05s;
+}
+
+
+
+#game-board {
+  width: 50vw;
+  height: 50vw;
+  padding: 1vw;
+  background-color: blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 5%;
+  align-items: center;
+  border: .15vw solid black;
+  box-shadow: 3px 3px 5px #333;
+  
+}
+
+.rows {
+  width: 5.7vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.chip-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vw;
+  width: 5vw;
+  padding: 0%;
+  border-radius: 50%;
+  border: .25vw solid rgb(0, 0, 112);
+  background-color: rgb(219, 218, 218);
+}
+
+.chip-red {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.chip-yellow {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: yellow;
+}
