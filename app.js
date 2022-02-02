@@ -13,7 +13,7 @@ const players  = {
 }
 
 
-const chipRows = {
+class ChipRows {
   //Creates an object with the individual chips divided by rows
   individualChips() {
     return  {
@@ -25,7 +25,7 @@ const chipRows = {
       6: [...document.querySelectorAll('#row6 .chip-container')],
       7: [...document.querySelectorAll('#row7 .chip-container')]
     }
-    }, 
+    }
     //This will create an object to use for checking perpendicular 
     //matches
     perpChips() {
@@ -50,6 +50,7 @@ const chipRows = {
     }
 }
 
+const chipRows = new ChipRows;
 
 
 class CheckWins {
