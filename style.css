@@ -32,7 +32,6 @@
   }
 
   body button {
-   
     font-size: 3vw;
     text-align: center;
     width: 20vw;
@@ -41,7 +40,40 @@
     transform: scale(1);
   }
 
-
+  body #start-game {
+    position: absolute;
+    top: 35vh;
+    left: 38vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 25vw;
+    height: 25vh;
+    background-color: rgba(245, 245, 245, 0.863);
+    font-family: 'Bungee Shade', cursive;
+    border-radius: 1vw;
+    box-shadow: 3px 3px 5px #333;
+    font-size: 2vw;
+  }
+  
+  body #end-game{
+    position: absolute;
+    top: 35vh;
+    left: -50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 25vw;
+    height: 25vh;
+    background-color: rgba(245, 245, 245, 0.863);
+    font-family: 'Bungee Shade', cursive;
+    border-radius: 1vw;
+    box-shadow: 3px 3px 5px #333;
+    font-size: 2.5vw;
+    z-index: 99;
+  }
 
 
 
@@ -110,6 +142,7 @@ main {
   border-radius: 1vw;
   box-shadow: 3px 3px 5px #333;
   font-size: 1vw;
+  z-index: 99;
 }
 
 /* Add this class when the button is click to make the game playable */
@@ -216,6 +249,11 @@ button:active{
   width: 100%;
   border-radius: 50%;
   background-color: red;
+  position: relative;
+  bottom:120vw;
+  animation-name: chipDrop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .chip-yellow {
@@ -223,4 +261,21 @@ button:active{
   width: 100%;
   border-radius: 50%;
   background-color: yellow;
+  position: relative;
+  bottom: 120vw;
+  animation-name: chipDrop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes chipDrop{
+  from{
+    position: relative;
+    bottom: 120vw;
+  }
+  to{
+    position: relative;
+    bottom: 0vw;
+  }
 }
