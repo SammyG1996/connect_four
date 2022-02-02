@@ -17,62 +17,96 @@
     height: 9vw;
     width: 9vw;
   }
-  body #start-game {
-    width: 25vw;
-    height: 20vh;
-    text-align: center;
-    font-size: 2vw;
-  }
-  
-  body #end-game{
-    width: 25vw;
-    height: 20vh;
-    text-align: center;
-    font-size: 2.5vw;
-  }
 
   body button {
-    font-size: 3vw;
+    margin-top: 1vw;
+    font-size: 2.5vw;
     text-align: center;
     width: 20vw;
-    height: 5vh;
+    height: 2.5vh;
     transition: .05s;
     transform: scale(1);
   }
 
   body #start-game {
     position: absolute;
-    top: 35vh;
-    left: 38vw;
+    left: 32vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 25vw;
-    height: 25vh;
+    width: 35vw;
+    height: 45vw;
     background-color: rgba(245, 245, 245, 0.863);
     font-family: 'Bungee Shade', cursive;
     border-radius: 1vw;
     box-shadow: 3px 3px 5px #333;
     font-size: 2vw;
+    text-align: center;
+  }
+  body #start-game label {
+    font-size: 2vw;
+    margin-bottom: .5vw;
+  }
+
+  body #start-game select {
+    height: 2.75vw;
+    font-size: 1.75vw;
+    margin-bottom: .5vw;
+  }
+
+  body .startGame {
+    animation-name: startgameMobile;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    
+  }
+  
+  @keyframes startgameMobile{
+    from{
+      position: absolute;
+      left: 32vw;
+    }
+    to{
+      position: absolute;
+      left: 100vw;
+    }
   }
   
   body #end-game{
     position: absolute;
-    top: 35vh;
     left: -50vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 25vw;
-    height: 25vh;
+    width: 35vw;
+    height: 45vw;
     background-color: rgba(245, 245, 245, 0.863);
     font-family: 'Bungee Shade', cursive;
     border-radius: 1vw;
     box-shadow: 3px 3px 5px #333;
     font-size: 2.5vw;
+    text-align: center;
     z-index: 99;
+  }
+
+  body .endGame {
+    animation-name: endgameMobile;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    
+  }
+  
+  @keyframes endgameMobile{
+    from{
+      position: absolute;
+      left: -50vw;
+    }
+    to{
+      position: absolute;
+      left: 32vw;
+    }
   }
 
 
@@ -98,6 +132,8 @@ body {
   padding: 0%;
   margin: 0%;
   overflow: hidden;
+  display: flex;
+  justify-content:  center;
 }
 
 main {
@@ -112,19 +148,20 @@ main {
 
 #start-game {
   position: absolute;
-  top: 35vh;
+  /* top: 27vh; */
   left: 38vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 25vw;
-  height: 25vh;
+  height: 25vw;
   background-color: rgba(245, 245, 245, 0.863);
   font-family: 'Bungee Shade', cursive;
   border-radius: 1vw;
   box-shadow: 3px 3px 5px #333;
   font-size: 1vw;
+  align-self: center;
 }
 
 #end-game{
@@ -143,6 +180,19 @@ main {
   box-shadow: 3px 3px 5px #333;
   font-size: 1vw;
   z-index: 99;
+}
+
+#start-game label {
+  font-size: 1.5vw;
+  margin-bottom: .5vw;
+}
+
+#start-game select {
+  height: 2vw;
+  font-size: 1vw;
+  font-family: 'Bungee Shade', cursive;
+  text-align: center;
+  margin-bottom: .5vw;
 }
 
 /* Add this class when the button is click to make the game playable */
@@ -194,6 +244,7 @@ button {
   height: 5vh;
   transition: .05s;
   transform: scale(1);
+  margin-top: 1vw;
 }
 
 button:hover{
@@ -219,8 +270,8 @@ button:active{
   border-radius: 5%;
   align-items: center;
   border: .15vw solid black;
-  box-shadow: 3px 3px 5px #333;
-  
+  box-shadow: 3px 3px 5px #333; 
+  align-self: center;
 }
 
 .rows {
@@ -244,7 +295,7 @@ button:active{
   background-color: rgb(219, 218, 218);
 }
 
-.chip-red {
+.red {
   height: 100%;
   width: 100%;
   border-radius: 50%;
@@ -256,13 +307,48 @@ button:active{
   animation-fill-mode: forwards;
 }
 
-.chip-yellow {
+.yellow {
   height: 100%;
   width: 100%;
   border-radius: 50%;
   background-color: yellow;
   position: relative;
   bottom: 120vw;
+  animation-name: chipDrop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.green {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: green;
+  position: relative;
+  bottom:120vw;
+  animation-name: chipDrop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.blue {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: rgb(0, 135, 197);
+  position: relative;
+  bottom: 120vw;
+  animation-name: chipDrop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.pink {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: pink;
+  position: relative;
+  bottom:120vw;
   animation-name: chipDrop;
   animation-duration: 1s;
   animation-fill-mode: forwards;

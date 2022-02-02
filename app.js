@@ -6,10 +6,25 @@ const startBtn =  document.querySelector('#start-button');
 const endGame = document.querySelector('#end-game')
 const endGameH2 = document.querySelector('h2')
 const endBtn = document.querySelector('#end-button')
-
+let colors
+// const playerColors = new Players
 const players  = {
-  yellow: 1,
-  red: 0
+  player1: 1,
+  player2: 0
+}
+
+class Players {
+  constructor(color1, color2) {
+    this.color1 = color1;
+    this.color2 = color2;
+  }
+  color1(){
+    return this.color1
+  }
+  color2(){
+    return this.color2
+  }
+  
 }
 
 
@@ -69,35 +84,35 @@ function and pass in the color that won. I added breaks that will stop execution
 of code if it falls out of the range of either the array or keys. 
 */
 
-diagRight(color) {
+diagRight(player) {
   const chips = chipRows.perpChips(); 
   for(let i = 0; i <= 8; i++){
     for(let j = 0; j <= 6; j++){
       let key = i; 
       let arrIndex = j;
-      if(chips[key][arrIndex].classList.contains(color)){
+      if(chips[key][arrIndex].classList.contains(player)){
         if(key >= 8 || arrIndex >= 6){
           break
         } else{
           key+=1; 
           arrIndex+=1;
         }
-          if(chips[key][arrIndex].classList.contains(color)){
+          if(chips[key][arrIndex].classList.contains(player)){
             if(key >= 8 || arrIndex >= 6){
               break
             } else{
               key+=1; 
               arrIndex+=1;
             }
-              if(chips[key][arrIndex].classList.contains(color)){
+              if(chips[key][arrIndex].classList.contains(player)){
                 if(key >= 8 || arrIndex >= 6){
                   break
                 } else{
                   key+=1; 
                   arrIndex+=1;
                 }
-                  if(chips[key][arrIndex].classList.contains(color)){
-                    if(color === 'yellow'){
+                  if(chips[key][arrIndex].classList.contains(player)){
+                    if(player === 'player1'){
                       this.whoWins(4,0)
                     } else {
                       this.whoWins(0,4)
@@ -110,35 +125,35 @@ index number of the previously confirmed chip. If it passes all 4 rounds that me
 function and pass in the color that won. I added breaks that will stop execution 
 of code if it falls out of the range of either the array or keys. 
 */
-diagLeft(color) {
+diagLeft(player) {
   const chips = chipRows.perpChips(); 
   for(let i = 8; i >= 0; i-=1){
     for(let j = 0; j <= 6; j++){
       let key = i; 
       let arrIndex = j;
-      if(chips[key][arrIndex].classList.contains(color)){
+      if(chips[key][arrIndex].classList.contains(player)){
         if(key <= 0 || arrIndex >= 6){
           break
         } else{
           key-=1; 
           arrIndex+=1;
         }
-          if(chips[key][arrIndex].classList.contains(color)){
+          if(chips[key][arrIndex].classList.contains(player)){
             if(key <= 0 || arrIndex >= 6){
               break
             } else{
               key-=1; 
               arrIndex+=1;
             }
-              if(chips[key][arrIndex].classList.contains(color)){
+              if(chips[key][arrIndex].classList.contains(player)){
                 if(key <= 0 || arrIndex >= 6){
                   break
                 } else{
                   key-=1; 
                   arrIndex+=1;
                 }
-                  if(chips[key][arrIndex].classList.contains(color)){
-                    if(color === 'yellow'){
+                  if(chips[key][arrIndex].classList.contains(player)){
+                    if(player === 'player1'){
                       this.whoWins(4,0)
                     } else {
                       this.whoWins(0,4)
@@ -149,16 +164,16 @@ diagLeft(color) {
 verticle() {
   const chips = chipRows.individualChips();
   for(let i = 1; i <= 7; i++){
-    let red = 0;
-    let yellow = 0;
+    let player1 = 0;
+    let player2 = 0;
     let lastChip;
     for(let chip of chips[i]){
-      if(chip.className === 'chip-container yellow') {
-        lastChip !== 'yellow' ? (yellow = 1) && (lastChip = 'yellow') : yellow = yellow + 1;
-        this.whoWins(yellow, red)
-      } else if(chip.className === 'chip-container red') {
-        lastChip !== 'red' ? (red = 1) && (lastChip = 'red') : red = red + 1;
-        this.whoWins(yellow, red)
+      if(chip.className === 'chip-container player1') {
+        lastChip !== 'player1' ? (player1 = 1) && (lastChip = 'player1') : player1 = player1 + 1;
+        this.whoWins(player1, player2)
+      } else if(chip.className === 'chip-container player2') {
+        lastChip !== 'player2' ? (player2 = 1) && (lastChip = 'player2') : player2 = player2 + 1;
+        this.whoWins(player1, player2)
       }
     }
   }
@@ -169,21 +184,21 @@ verticle() {
 perp() {
   const chips = chipRows.perpChips();
   for(let i = 0; i <= 8; i++){
-    let red = 0;
-    let yellow = 0;
+    let player1 = 0;
+    let player2 = 0;
     let lastChip;
     for(let chip of chips[i]){
-      if(chip.className === 'chip-container yellow') {
-        lastChip !== 'yellow' ? yellow = 1 : yellow = yellow + 1;
-        lastChip = 'yellow'
-        this.whoWins(yellow, red)
-      } else if(chip.className === 'chip-container red') {
-        lastChip !== 'red' ? red = 1 : red = red + 1;
-        lastChip = 'red'
-        this.whoWins(yellow, red)
+      if(chip.className === 'chip-container player1') {
+        lastChip !== 'player1' ? player1 = 1 : player1 = player1 + 1;
+        lastChip = 'player1'
+        this.whoWins(player1, player2)
+      } else if(chip.className === 'chip-container player2') {
+        lastChip !== 'player2' ? player2 = 1 : player2 = player2 + 1;
+        lastChip = 'player2'
+        this.whoWins(player1, player2)
       } else{
-        red = 0;
-        yellow = 0;
+        player1 = 0;
+        player2 = 0;
       }
     }
   }
@@ -191,13 +206,13 @@ perp() {
 
 //This will check to see if yellow or red has one when its called from
 //one of the bellow checking functions (vertical(), perp(), and diag())
-whoWins(yellow, red) {
-  if(yellow === 4){
-    endGameH2.innerHTML = 'Yellow Wins!'
+whoWins(player1, player2) {
+  if(player1 === 4){
+    endGameH2.innerHTML = 'PLayer 1 Wins!'
     endGame.classList.add('endGame')
     eventListeners.disableClick()
-  } else if(red === 4){
-    endGameH2.innerHTML = 'Red Wins!'
+  } else if(player2 === 4){
+    endGameH2.innerHTML = 'Player 2 Wins!'
     endGame.classList.add('endGame')
     eventListeners.disableClick()
   }
@@ -209,9 +224,9 @@ whoWins(yellow, red) {
 const checkWinner = new CheckWins
 
 
-function checkWin(color) {
-checkWinner.diagRight(color);
-checkWinner.diagLeft(color);
+function checkWin(player) {
+checkWinner.diagRight(player);
+checkWinner.diagLeft(player);
 checkWinner.verticle();
 checkWinner.perp();
 }
@@ -228,28 +243,40 @@ constructor(lastChip, e) {
 //this should create a new red or yellow chip and append it to the 
 //containerCip div. It also adds a class to the container span 
 //that says what color is in the div. 
+
+
+
+/* 
+I need to updated all of the chips and replace the follwoing: 
+yellow === player1
+red === player2 
+
+AND replace the chip-yellow && chip-red with colors.color1 && colors.color2
+
+Also, updated CSS to remove the "chip-" portion of the chips-red or chips-yellow for example
+*/
 newChip(chips, color) {
   const newChip = document.createElement('div')
-  if(color === 'yellow') {
-    newChip.className = 'chip-yellow';
-    chips.classList.add('yellow');
+  if(color === colors.color1) {
+    newChip.className = colors.color1;
+    chips.classList.add('player1');
+    checkWin('player1')
   } else {
-    newChip.className = 'chip-red';
-    chips.classList.add('red');
+    newChip.className = colors.color2;
+    chips.classList.add('player2');
+    checkWin('player2')
   }
   chips.append(newChip);
-
-  checkWin(color)
 }
 
 //this function will decied which chip should be selected
 whatColor(chips, e) {
-if(players.yellow > players.red) { 
-  this.newChip(chips, 'yellow', e);
-  players.red = players.red + 1; 
+if(players.player1 > players.player2) { 
+  this.newChip(chips, colors.color1 , e);
+  players.player2 = players.player2 + 1; 
 } else {
-  this.newChip(chips, 'red', e)
-  players.yellow = players.yellow + 1;
+  this.newChip(chips, colors.color2, e)
+  players.player1 = players.player1 + 1;
 }
 }
 
@@ -310,6 +337,8 @@ const eventListeners = new EventListener
 //unwanted clicks
 startBtn.addEventListener('click', () => {
   startGame.classList.toggle('startGame');
+  colors = new Players(document.querySelector('#player1').value, document.querySelector('#player2').value)
+  
   eventListeners.enableClicks();
   })
   
