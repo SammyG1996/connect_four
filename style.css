@@ -30,13 +30,13 @@
 
   body #start-game {
     position: absolute;
-    left: 32vw;
+    left: 25vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 35vw;
-    height: 45vw;
+    width: 50vw;
+    height: 50vw;
     background-color: rgba(245, 245, 245, 0.863);
     font-family: 'Bungee Shade', cursive;
     border-radius: 1vw;
@@ -45,14 +45,16 @@
     text-align: center;
   }
   body #start-game label {
-    font-size: 2vw;
+    font-size: 3vw;
     margin-bottom: .5vw;
+    text-align: center;
   }
 
   body #start-game select {
-    height: 2.75vw;
-    font-size: 1.75vw;
+    height: 5vw;
+    font-size: 3.5vw;
     margin-bottom: .5vw;
+    text-align: center;
   }
 
   body .startGame {
@@ -65,7 +67,7 @@
   @keyframes startgameMobile{
     from{
       position: absolute;
-      left: 32vw;
+      left: 25vw;
     }
     to{
       position: absolute;
