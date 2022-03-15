@@ -263,7 +263,7 @@ button:active{
 
 #game-board {
   width: 50vw;
-  height: 50vw;
+  height: 80vh;
   padding: 1vw;
   background-color: blue;
   display: flex;
