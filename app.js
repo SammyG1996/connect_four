@@ -82,21 +82,45 @@ I am itterating up vs down. I then check the next array item by 1+= the
 index number of the previously confirmed chip. If it passes all 4 rounds that means a match was found. I then call the whoWins()
 function and pass in the color that won. I added breaks that will stop execution 
 of code if it falls out of the range of either the array or keys. 
+
+I pass in the current player because any chips that they have on the board will have 'player1' or 'player2' in
+the class list. I will later on use this for the matching process.  
 */
 
 diagRight(player) {
+   //I create a variable that will hold an object containing arrays that correspond to the x axis of the board
   const chips = chipRows.perpChips(); 
+    //next I start itterating over this object. 
+  
+    //This first for loop will go over every key in the object itterating backwards to 0
   for(let i = 0; i <= 8; i++){
+     //Once inside this for loop the next conditions will test to see if there is a match inside the array
     for(let j = 0; j <= 6; j++){
       let key = i; 
       let arrIndex = j;
+
+      //from this point forward using the 'i' from the first loop to represent the key in the chips object
+        //and 'j' from this second loop to represent the index of the array found at that keys 'value' we start 
+        //the process of checking to see if there is a match diagonally.
+  
+        //first check to see if the current chip from the array has a class list of either 'player1' or 'player2' 
+        //(which was passed in earlier as a param). If this is true then I move forward with the checking process
       if(chips[key][arrIndex].classList.contains(player)){
+         //to achieve the diagonal matching process I use the following 4 'if statments'.
+          
+          //first I check to see if the the index is either 0 or 6. I 'break' if this is true because continuing 
+          //forward will lead to trying to trying to access a value outside of the array [since the array is only 0-6]
         if(key >= 8 || arrIndex >= 6){
           break
         } else{
+            //if the previous condition is false I move forward with the match process. To do this I +1 from the 
+            //'key' variable and +1 to the 'arrIndex' (which contains the value of j). This effectivley moves you 
+            //one row 'down' and one chip to the 'right'. 
           key+=1; 
           arrIndex+=1;
         }
+
+        //The above process then continues 3 more times
           if(chips[key][arrIndex].classList.contains(player)){
             if(key >= 8 || arrIndex >= 6){
               break
@@ -111,12 +135,23 @@ diagRight(player) {
                   key+=1; 
                   arrIndex+=1;
                 }
+                 //on the third and final time of matching we have a full set of 4 matching chips
                   if(chips[key][arrIndex].classList.contains(player)){
+                     //Now I check to see if player 1 wins (by checking to see if the player param is === to 'player1')
                     if(player === 'player1'){
+                       //if this is true I call the 'whoWins()' function and pass in player 1 as the winner
                       this.whoWins(4,0)
                     } else {
+                      //if else i pass in player2 as the winner. 
                       this.whoWins(0,4)
-                    }}}}}}}} 
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      } 
 /*
 The way this works is I itterate over all the array verically. When I find a chip that 
 conatins the class list of the specified color i start to iterate backwards. There are 9 keys in 
@@ -124,20 +159,44 @@ the object that contains the chips. I start going back from 8-7-6-5-4-3-2-1-0. I
 index number of the previously confirmed chip. If it passes all 4 rounds that means a match was found. I then call the whoWins()
 function and pass in the color that won. I added breaks that will stop execution 
 of code if it falls out of the range of either the array or keys. 
+
+I pass in the current player because any chips that they have on the board will have 'player1' or 'player2' in
+the class list. I will later on use this for the matching process.  
 */
 diagLeft(player) {
+  //I create a variable that will hold an object containing arrays that correspond to the x axis of the board
   const chips = chipRows.perpChips(); 
+  //next I start itterating over this object. 
+
+  //This first for loop will go over every key in the object itterating backwards to 0
   for(let i = 8; i >= 0; i-=1){
+    //Once inside this for loop the next conditions will test to see if there is a match inside the array
     for(let j = 0; j <= 6; j++){
       let key = i; 
       let arrIndex = j;
+
+      //from this point forward using the 'i' from the first loop to represent the key in the chips object
+      //and 'j' from this second loop to represent the index of the array found at that keys 'value' we start 
+      //the process of checking to see if there is a match diagonally.
+
+      //first check to see if the current chip from the array has a class list of either 'player1' or 'player2' 
+      //(which was passed in earlier as a param). If this is true then I move forward with the checking process
       if(chips[key][arrIndex].classList.contains(player)){
+        //to achieve the diagonal matching process I use the following 4 'if statments'.
+        
+        //first I check to see if the the index is either 0 or 6. I 'break' if this is true because continuing 
+        //forward will lead to trying to trying to access a value outside of the array [since the array is only 0-6]
         if(key <= 0 || arrIndex >= 6){
           break
         } else{
+          //if the previous condition is false I move forward with the match process. To do this I -1 from the 
+          //'key' variable and +1 to the 'arrIndex' (which contains the value of j). This effectivley moves you 
+          //one row 'up' and one chip to the 'left'. 
           key-=1; 
           arrIndex+=1;
         }
+
+        //The above process then continues 3 more times
           if(chips[key][arrIndex].classList.contains(player)){
             if(key <= 0 || arrIndex >= 6){
               break
@@ -152,12 +211,23 @@ diagLeft(player) {
                   key-=1; 
                   arrIndex+=1;
                 }
+                //on the third and final time of matching we have a full set of 4 matching chips
                   if(chips[key][arrIndex].classList.contains(player)){
+                    //Now I check to see if player 1 wins (by checking to see if the player param is === to 'player1')
                     if(player === 'player1'){
+                      //if this is true I call the 'whoWins()' function and pass in player 1 as the winner
                       this.whoWins(4,0)
                     } else {
+                      //if else i pass in player2 as the winner. 
                       this.whoWins(0,4)
-                    }}}}}}}} 
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      } 
 
 //this check to see if 4 chips have been aligned in a row vertically
 //THIS ONE IS DONE AND
