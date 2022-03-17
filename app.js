@@ -30,6 +30,10 @@ class Players {
 
 class ChipRows {
   //Creates an object with the individual chips divided by rows
+  //when the board was first created it was divided up into 7 rows. 
+  //I use document.querySelecotrAll to get take these rows and then 
+  //spread them out in an array. Each key number coresponds to the row 
+  //that the array contains. 
   individualChips() {
     return  {
       1: [...document.querySelectorAll('#row1 .chip-container')],
@@ -42,7 +46,7 @@ class ChipRows {
     }
     }
     //This will create an object to use for checking perpendicular 
-    //matches
+    //matches by switching the rows from Y axis to x axis. 
     perpChips() {
       const chips = this.individualChips(); 
       const perpChips = {
@@ -56,6 +60,18 @@ class ChipRows {
         7: [], 
         8: []
       }
+      /*
+      To do this I use this simple algorithm. It contains 2 loops, 1 nested inside the other. 
+
+      This first loop initializes 'i' to 1. This will be used to access the key of the original
+      chips object. 
+
+      The second loop inside initializes 'j' to 0. This second loop is where the reorganization 
+      happens. I push on to the new 'perpChips' object of arrays by spreading the old objects
+      array accross the new arrays. Each new array in 'perpChip gets one of the values found in the 
+      previous 'chips' array. By spread the old array across multiple arrays I am able to change the
+      axis of the rows.
+      */
       for(let i = 1; i <= 7; i++){
         for(let j = 0; j <= 8; j++){
           perpChips[j].push(chips[i][j])
@@ -232,11 +248,39 @@ diagLeft(player) {
 //this check to see if 4 chips have been aligned in a row vertically
 //THIS ONE IS DONE AND
 verticle() {
+  //first I initialize the variable of 'chips' and store the object of arrays inside of it that 
+  //conatins all of the y axis rows 
   const chips = chipRows.individualChips();
+    /* 
+  Next I initialize 2 for loops. 
+  
+  The first loop is to traverse across every row starting from 1 all the way to 7. I use the
+  value of 'i' to access the keys in the chips object which will contain the coresponding array 
+  containing the chips. 
+
+  I also initialize 3 variable that will be used in the matching process. They will 
+  contain values that will determine who wins. the first 2 will contain the counts to
+  determine if player1 or player2 one. The second will contain the previous chip used to
+  determin if there is a match in color between the previous chip and the current chip. 
+  */ 
   for(let i = 1; i <= 7; i++){
     let player1 = 0;
     let player2 = 0;
     let lastChip;
+
+    //now once inside the loop i use a 'for of' loop to access each individual chips inside of the 
+    //the chips array found at the key of 'i' . 
+
+    // First I check if the chip has a class name that signifes it belongs to player1. 
+    // if so I check to see if the lastChip varaible has the value that is not of player1. 
+    //If the value is not equal to player1 Then I set the player1 vaiable back to 1. 
+    //If the player1 variable does have a match to lastChip then I +1 the player1 variable
+    //and then set the last chip to player1. Every time the loop happens I check to see if either
+    //player1 or player2 has one by calling 'this.whoWins()' and passing in the values of player1
+    //and player 2. 
+
+    //I repeat the same process in the else if loop below
+
     for(let chip of chips[i]){
       if(chip.className === 'chip-container player1') {
         lastChip !== 'player1' ? (player1 = 1) && (lastChip = 'player1') : player1 = player1 + 1;
@@ -252,11 +296,40 @@ verticle() {
 //This does almost the same as the vertical() function but it 
 //Checks against the perpendicular axis
 perp() {
+  //first I initialize the variable of 'chips' and store the object of arrays inside of it that 
+  //conatins all of the x axis rows 
   const chips = chipRows.perpChips();
+  /* 
+  Next I initialize 2 for loops. 
+  
+  The first loop is to traverse across every row starting from 0 all the way to 8. I use the
+  value of 'i' to access the keys in the chips object which will contain the coresponding array 
+  containing the chips. 
+
+  I also initialize 3 variable that will be used in the matching process. They will 
+  contain values that will determine who wins. the first 2 will contain the counts to
+  determine if player1 or player2 one. The second will contain the previous chip used to
+  determin if there is a match in color between the previous chip and the current chip. 
+  */ 
   for(let i = 0; i <= 8; i++){
     let player1 = 0;
     let player2 = 0;
     let lastChip;
+
+    //now once inside the loop i use a 'for of' loop to access each individual chips inside of the 
+    //the chips array found at the key of 'i' . 
+
+    // First I check if the chip has a class name that signifes it belongs to player1. 
+    // if so I check to see if the lastChip varaible has the value that is not of player1. 
+    //If the value is not equal to player1 Then I set the player1 vaiable back to 1. 
+    //If the player1 variable does have a match to lastChip then I +1 the player1 variable
+    //and then set the last chip to player1. Every time the loop happens I check to see if either
+    //player1 or player2 has one by calling 'this.whoWins()' and passing in the values of player1
+    //and player 2. 
+
+    //I repeat the same process in the else if loop below
+
+    //And if no matches are found player1 and player2 a set back to 0. 
     for(let chip of chips[i]){
       if(chip.className === 'chip-container player1') {
         lastChip !== 'player1' ? player1 = 1 : player1 = player1 + 1;
@@ -274,8 +347,11 @@ perp() {
   }
 } 
 
-//This will check to see if yellow or red has one when its called from
-//one of the bellow checking functions (vertical(), perp(), and diag())
+//This will check to see if player1 or player2 has won when called. 
+//The it does this by evaluating the the 2 params that are passed in. 
+
+//if player1 === 4 then player1 wins and the game ends. Clicks are disabled and the DOM is upated 
+//to say player1 wins. The same happens if player2 === 4. 
 whoWins(player1, player2) {
   if(player1 === 4){
     endGameH2.innerHTML = 'PLayer 1 Wins!'
@@ -290,10 +366,10 @@ whoWins(player1, player2) {
 
 }
 
-
+//this initializes the class and allows me to access all the properties. 
 const checkWinner = new CheckWins
 
-
+//this function will call 4 other functions that will checkt to see if there are any winners
 function checkWin(player) {
 checkWinner.diagRight(player);
 checkWinner.diagLeft(player);
@@ -303,9 +379,13 @@ checkWinner.perp();
 
 
 
+//This class is used to create new chips. 
 
 class AddChip {
 
+//the 2 constructors to pass in are what color the last chip was (which will determine what color 
+//the current chip should be), and the event where the click happened in order to find out where to 
+//place the new chip.
 constructor(lastChip, e) {
   this.lastChip = lastChip
   this.e = e
@@ -317,13 +397,7 @@ constructor(lastChip, e) {
 
 
 /* 
-I need to updated all of the chips and replace the follwoing: 
-yellow === player1
-red === player2 
 
-AND replace the chip-yellow && chip-red with colors.color1 && colors.color2
-
-Also, updated CSS to remove the "chip-" portion of the chips-red or chips-yellow for example
 */
 newChip(chips, color) {
   const newChip = document.createElement('div')
@@ -353,6 +427,12 @@ if(players.player1 > players.player2) {
 //This ensures that the last chip is selected on the board. 
 //Then it passes in the whatColor() function when the last container 
 //is selected to finish deciding what color should go in there
+
+//to accomplish this I initiate 'chip' to = the 'lastChip' param that was passed in. 
+
+//If 'chip' === 'null' then I return. 
+
+//else if 
 bottomSelector(lastChip,e) {
 let chips = lastChip;
 for(let i = 0; i < 9; i++){
